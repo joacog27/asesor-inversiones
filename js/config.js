@@ -362,4 +362,17 @@ export const DEFAULT_REMINDER_DAY = 5;
 // puede pegar desde Ajustes → Sincronización.
 // Esta configuración NO es secreta: la seguridad la dan las reglas de Firestore.
 // ---------------------------------------------------------------------
-export const FIREBASE_CONFIG = null;
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+export const FIREBASE_CONFIG = {
+  apiKey: "AIzaSy...",
+  authDomain: "mi-asesor-fc02c.firebaseapp.com",
+  projectId: "mi-asesor-fc02c",
+  storageBucket: "mi-asesor-fc02c.firebasestorage.app",
+  messagingSenderId: "176577919539",
+  appId: "1:176577919539:web:..."
+};
