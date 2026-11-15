@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Mi Asesor de Inversiones</title>
+  <meta name="description" content="Asesor de inversiones personal: test de perfil, plan mensual, mercado en vivo y seguimiento de tu cartera en pesos o dólares." />
+  <meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Asesor" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    // Aplicar tema antes de pintar (evita parpadeo)
+    try {
+      const r = JSON.parse(localStorage.getItem('asesor:v1') || '{}');
+      if (r.theme === 'light' || r.theme === 'dark') document.documentElement.dataset.theme = r.theme;
+    } catch (e) {}
+  </script>
+  <script src="vendor/chart.umd.min.js" defer></script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div id="app" class="layout">
+    <header class="topbar">
+      <a class="brand" href="#/asesor" aria-label="Inicio">
+        <img src="icons/icon.svg" alt="" width="28" height="28" />
+        <span>Mi Asesor</span>
+      </a>
+      <div class="topbar-right">
+        <button id="status-btn" class="status-dot" aria-label="Estado de las fuentes de datos" title="Estado de los datos"><i></i><span class="status-text">Conectando…</span></button>
+        <div class="seg" role="group" aria-label="Moneda">
+          <button data-currency="ARS">ARS</button>
+          <button data-currency="USD">USD</button>
+        </div>
+        <button id="user-btn" class="user-chip" aria-label="Cambiar de usuario"><span class="avatar"></span><span class="user-name"></span></button>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Secciones">
+      <a href="#/asesor" data-route="asesor"><span class="ni" aria-hidden="true">🧭</span><span>Asesor</span></a>
+      <a href="#/mercado" data-route="mercado"><span class="ni" aria-hidden="true">📈</span><span>Mercado</span></a>
+      <a href="#/cartera" data-route="cartera"><span class="ni" aria-hidden="true">💼</span><span>Mi cartera</span></a>
+      <a href="#/metas" data-route="metas"><span class="ni" aria-hidden="true">🎯</span><span>Metas</span></a>
+      <a href="#/ajustes" data-route="ajustes"><span class="ni" aria-hidden="true">⚙️</span><span>Ajustes</span></a>
+    </nav>
+
+    <main id="main" tabindex="-1">
+      <div class="boot">
+        <div class="skeleton h1"></div>
+        <div class="skeleton card"></div>
+        <div class="skeleton card"></div>
+      </div>
+    </main>
+  </div>
+  <noscript><p style="padding:24px">Esta app necesita JavaScript activado.</p></noscript>
+</body>
+</html>

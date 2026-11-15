@@ -1,0 +1,18 @@
+{
+  "name": "Mi Asesor de Inversiones",
+  "short_name": "Asesor",
+  "description": "Plan de inversión mensual, mercado en vivo y seguimiento de tu cartera.",
+  "lang": "es-AR",
+  "start_url": "./#/asesor",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f9f9f7",
+  "theme_color": "#2a78d6",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "asesor-inversiones",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Asesor de inversiones personal (PWA) para Argentina",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "npx --yes serve -l 8080 ."
+  }
+}
