@@ -46,10 +46,11 @@ export async function initSync() {
   try {
     emit({ status: 'loading', error: null });
     fb = fb || await import(BUNDLE);
-    app = fb.initializeApp(config, `asesor-${Date.now()}`);
+    // Nombre fijo: Firebase guarda la sesión con este nombre. Si cambiara en cada
+    // carga, la sesión se perdería al recargar y el regreso del login de Google también.
+    app = fb.initializeApp(config, `asesor-${config.projectId}-${String(config.apiKey).slice(-6)}`);
     configKey = key;
     auth = fb.getAuth(app);
-    await fb.setPersistence(auth, fb.browserLocalPersistence).catch(() => {});
     db = fb.getFirestore(app);
     // Solo para pruebas locales con los emuladores de Firebase
     let emu = null;
@@ -58,6 +59,7 @@ export async function initSync() {
       fb.connectAuthEmulator(auth, `http://${emu}:9099`, { disableWarnings: true });
       fb.connectFirestoreEmulator(db, emu, 8081);
     }
+    await fb.setPersistence(auth, fb.browserLocalPersistence).catch(() => {});
     let pendingRedirect = false;
     try { pendingRedirect = sessionStorage.getItem('asesor:redirect') === '1'; sessionStorage.removeItem('asesor:redirect'); } catch { /* ignore */ }
     if (pendingRedirect) fb.getRedirectResult(auth).catch((err) => emit({ status: 'error', error: friendlyError(err) }));
@@ -105,10 +107,6 @@ function stopEngine() {
   engine = null;
 }
 
-function isStandaloneIOS() {
-  return /iphone|ipad|ipod/i.test(navigator.userAgent) && (window.navigator.standalone || matchMedia('(display-mode: standalone)').matches);
-}
-
 export async function signIn() {
   if (!(await initSync())) throw new Error(syncState.error || 'Falta la configuración de Firebase.');
   // Solo con los emuladores locales: login de prueba sin ventana de Google
@@ -125,7 +123,6 @@ export async function signIn() {
     try { sessionStorage.setItem('asesor:redirect', '1'); } catch { /* ignore */ }
     return fb.signInWithRedirect(auth, provider);
   };
-  if (isStandaloneIOS()) return redirect();
   try {
     await fb.signInWithPopup(auth, provider);
   } catch (err) {
