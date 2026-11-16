@@ -1,7 +1,7 @@
 // Service worker: la app funciona offline con los últimos datos guardados.
 // - Archivos de la app: cache-first (se actualiza en segundo plano).
 // - APIs de mercado: las maneja la app con su propia caché (IndexedDB).
-const VERSION = 'asesor-v2.0.0';
+const VERSION = 'asesor-v2.0.1';
 const SHELL = [
   './',
   './index.html',
